@@ -6,6 +6,17 @@ git submodule add https://github.com/modelica/ssp-standard 3rdParty/SSP_Schema
 # Generate rust headers
 
 
+It worked like crap wrote them from scratch...
+
+Tried 
+ - https://github.com/ProgVal/rust-xml-schema
+ - xml-schema
+ - XMLSchemer
+
+
+
+# Old
+
 ## https://github.com/ProgVal/rust-xml-schema
 
 wget https://www.w3.org/2009/XMLSchema/XMLSchema.xsd -O xml-schema/XMLSchema.xsd

@@ -1,0 +1,26 @@
+[workspace]
+members = ["ssp", "ssp_schema", "ssp_test"]
+resolver = "2"
+
+[workspace.package]
+include = [
+    "Cargo.toml",
+    "benches/*.rs",
+    "examples/*.rs",
+    "src/**/*.rs",
+    "tests/*.rs",
+    "build.rs",
+]
+
+[package]
+name = "ssp-workspace"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+ssp = { path = "ssp" }
+ssp_schema = { path = "ssp_schema" }
+ssp_test = { path = "ssp_test" }
+
+

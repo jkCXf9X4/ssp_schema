@@ -1,0 +1,8 @@
+[package]
+name = "ssp"
+description = "SSP handler for"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ssp_schema = { path ="../ssp_schema"}

@@ -12,6 +12,8 @@ use std::io::{BufReader, Write};
 
 // use yaserde::YaDeserialize;
 
+use petgraph::Graph;
+
 mod ssd;
 mod ssc;
 use ssd::*;
@@ -27,8 +29,27 @@ fn main() -> std::io::Result<()> {
     let s = format!("{:#?}", ssd);
 
     let mut output_file = File::create("parsed_xml")?;
-
     write!(output_file, "{}", s)?;
+
+    
+    let mut deps = Graph::<&str, &str>::new();
+
+    let components  = ssd.System.Elements.unwrap().Components;
+
+    for component in components.iter()
+    {
+        println!("{:#?}", component);
+    }
+
+    return Ok(());
+    
+    let conections = ssd.System.Connections.unwrap().list;
+    for connection in conections.iter()
+    {
+        println!("{:#?}", connection);
+
+    }
+
 
 
     return Ok(());

@@ -2,7 +2,7 @@
 
 use yaserde_derive::{YaDeserialize, YaSerialize};
 
-use crate::ssc::*;
+use super::ssc::*;
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize, YaSerialize)]
 #[yaserde(
@@ -62,8 +62,8 @@ pub struct TSystem {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct Elements {
-    #[yaserde(prefix = "ssd")]
-    pub Component: Vec<TComponent>,
+    #[yaserde(rename = "Component", prefix = "ssd")]
+    pub Components: Vec<TComponent>,
     #[yaserde(prefix = "ssd")]
     pub SignalDictionaryReference: Vec<TSignalDictionaryReference>,
     #[yaserde(prefix = "ssd")]

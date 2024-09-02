@@ -1,0 +1,9 @@
+[package]
+name = "ssp_schema"
+version = "0.1.0"
+description = "XML schema support for SSP 1.0.1"
+edition = "2021"
+
+[dependencies]
+yaserde = { version = "0.10.1" }
+yaserde_derive = { version = "0.10.1" }

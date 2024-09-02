@@ -1,0 +1,10 @@
+[package]
+name = "ssp_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ssp = { path ="../ssp" }
+ssp_schema = { path ="../ssp_schema"}
+
+petgraph = {version = "0.6.5"}

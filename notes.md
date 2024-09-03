@@ -1,0 +1,1 @@
+git submodule add https://github.com/modelica/ssp-standard 3rdParty/SSP_Schema

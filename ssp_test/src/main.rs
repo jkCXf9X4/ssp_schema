@@ -31,6 +31,7 @@ fn main() -> std::io::Result<()> {
     let components  = ssd.System.Elements.unwrap().Components;
 
     let mut comp_id = HashMap::new();
+    let mut id_comp = HashMap::new();
 
     for component in components.iter()
     {
@@ -39,8 +40,9 @@ fn main() -> std::io::Result<()> {
         let id = graph.add_node(name);
 
         comp_id.insert(name, id);
+        id_comp.insert(id, name);
 
-        println!("{:#?}", name);
+        log::trace!("{:#?}", name);
     }
 
     log::trace!("Creating edges");
@@ -51,14 +53,28 @@ fn main() -> std::io::Result<()> {
         let start_node = connection.startElement.as_deref().expect("No start elelent existing");
         let end_node = connection.endElement.as_deref().expect("No end elelent existing");
         
-        println!("{:#?}", start_node);
-        println!("{:#?}", end_node);
+        log::trace!("{:#?}", start_node);
+        log::trace!("{:#?}", end_node);
 
         graph.add_edge(comp_id[start_node], comp_id[end_node], "");
 
     }
+
+
     
     println!("{:?}", Dot::with_config(&graph, &[Config::EdgeNoLabel]));
+
+    let tarjan_scc = petgraph::algo::tarjan_scc(&graph);
+
+    for i in tarjan_scc {
+        println!("new scc");
+        for j in i {
+
+            println!("{:#?}", id_comp[&j]);
+        }
+    }
+
+    
     
     
     return Ok(());

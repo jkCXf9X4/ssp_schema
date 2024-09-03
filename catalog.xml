@@ -1,0 +1,23 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+    <uri
+        name="http://ssp-standard.org/SSP1/SystemStructureCommon"
+        uri="./3rdParty/SSP_Schema/schema/SystemStructureCommon.xsd" />
+
+        <uri
+        name="http://ssp-standard.org/SSP1/SystemStructureDescription"
+        uri="./3rdParty/SSP_Schema/schema/SystemStructureDescription.xsd" />
+
+        <uri
+        name="http://ssp-standard.org/SSP1/SystemStructureParameterMapping"
+        uri="./3rdParty/SSP_Schema/schema/SystemStructureParameterMapping.xsd" />
+
+        <uri
+        name="http://ssp-standard.org/SSP1/SystemStructureParameterValues"
+        uri="./3rdParty/SSP_Schema/schema/SystemStructureParameterValues.xsd" />
+
+        <uri
+        name="http://ssp-standard.org/SSP1/SystemStructureSignalDictionary"
+        uri="./3rdParty/SSP_Schema/schema/SystemStructureSignalDictionary.xsd" />
+  
+  </catalog>

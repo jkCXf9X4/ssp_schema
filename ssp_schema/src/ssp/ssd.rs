@@ -14,8 +14,27 @@ pub struct SystemStructureDescription {
     pub version: String,
     #[yaserde(attribute)]
     pub name: String,
+    
+    // ABaseElement
+    #[yaserde(attribute)]
+    pub id: Option<String>,
     #[yaserde(attribute)]
     pub description: Option<String>,
+
+    //ATOPLevelMetaData
+    #[yaserde(attribute)]
+    pub author: Option<String>,
+    #[yaserde(attribute)]
+    pub fileversion: Option<String>,
+    #[yaserde(attribute)]
+    pub copyright: Option<String>,
+    #[yaserde(attribute)]
+    pub license: Option<String>,
+    #[yaserde(attribute)]
+    pub generationTool: Option<String>,
+    #[yaserde(attribute)]
+    pub generationDateAndTime: Option<String>,
+
     #[yaserde(prefix = "ssd")]
     pub System: TSystem,
     #[yaserde(prefix = "ssc")]
@@ -34,6 +53,13 @@ pub struct SystemStructureDescription {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct TSystem {
+    //TElemet 
+    // - ABaseElement
+    #[yaserde(attribute)]
+    pub id: Option<String>,
+    #[yaserde(attribute)]
+    pub description: Option<String>,
+    //TElemet cont
     #[yaserde(attribute)]
     pub name: Option<String>,
     #[yaserde(prefix = "ssd")]
@@ -42,6 +68,8 @@ pub struct TSystem {
     pub ElementGeometry: Vec<ElementGeometry>,
     #[yaserde(prefix = "ssd")]
     pub TParameterBindings: Vec<TParameterBindings>,
+
+    // TSystem cont
     #[yaserde(prefix = "ssd")]
     pub Elements: Option<Elements>,
     #[yaserde(prefix = "ssd")]
@@ -64,10 +92,10 @@ pub struct TSystem {
 pub struct Elements {
     #[yaserde(rename = "Component", prefix = "ssd")]
     pub Components: Vec<TComponent>,
-    #[yaserde(prefix = "ssd")]
-    pub SignalDictionaryReference: Vec<TSignalDictionaryReference>,
-    #[yaserde(prefix = "ssd")]
-    pub System: Vec<TSystem>,
+    #[yaserde(rename = "SignalDictionaryReference", prefix = "ssd")]
+    pub SignalDictionaryReferences: Vec<TSignalDictionaryReference>,
+    #[yaserde(rename = "System", prefix = "ssd")]
+    pub Systems: Vec<TSystem>,
 }
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize, YaSerialize)]
@@ -76,18 +104,31 @@ pub struct Elements {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct TComponent {
-    #[yaserde(attribute = "type")]
-    pub r#type: Option<String>,
+    //TElemet 
+    // - ABaseElement
     #[yaserde(attribute)]
-    pub source: String,
+    pub id: Option<String>,
     #[yaserde(attribute)]
-    pub implementation: Option<String>,
+    pub description: Option<String>,
+    //TElemet cont
+    #[yaserde(attribute)]
+    pub name: Option<String>,
     #[yaserde(prefix = "ssd")]
     pub Connectors: Vec<TConnectors>,
     #[yaserde(prefix = "ssd")]
     pub ElementGeometry: Vec<ElementGeometry>,
     #[yaserde(prefix = "ssd")]
     pub TParameterBindings: Vec<TParameterBindings>,
+
+    #[yaserde(attribute = "type")]
+    pub r#type: Option<String>,
+    #[yaserde(attribute)]
+    pub source: String,
+    #[yaserde(attribute)]
+    pub implementation: Option<String>,
+
+    #[yaserde(prefix = "ssc")]
+    pub Annotations: Option<TAnnotations>,
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -110,14 +151,18 @@ pub struct TConnectors {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct Connector {
+    // ABaseElement
     #[yaserde(attribute)]
     pub id: Option<String>,
     #[yaserde(attribute)]
     pub description: Option<String>,
+
     #[yaserde(attribute)]
     pub name: String,
     #[yaserde(attribute)]
     pub kind: String,
+
+    //ssc:GTypeChoice
     #[yaserde(prefix = "ssc")]
     pub Real: Option<GTypeReal>,
     #[yaserde(prefix = "ssc")]
@@ -130,6 +175,7 @@ pub struct Connector {
     pub Enumeration: Option<GTypeEnumeration>,
     #[yaserde(prefix = "ssc")]
     pub Binary: Option<GTypeBinary>,
+
     #[yaserde(prefix = "ssd")]
     pub ConnectorGeometry: Option<ConnectorGeometry>,
     #[yaserde(prefix = "ssc")]

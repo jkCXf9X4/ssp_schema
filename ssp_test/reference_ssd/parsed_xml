@@ -1,8 +1,17 @@
 SystemStructureDescription {
     version: "1.0",
     name: "embrace",
+    id: None,
     description: None,
+    author: None,
+    fileversion: None,
+    copyright: None,
+    license: None,
+    generationTool: None,
+    generationDateAndTime: None,
     System: TSystem {
+        id: None,
+        description: None,
         name: Some(
             "root",
         ),
@@ -11,11 +20,13 @@ SystemStructureDescription {
         TParameterBindings: [],
         Elements: Some(
             Elements {
-                Component: [
+                Components: [
                     TComponent {
-                        type: None,
-                        source: "resources/0002_ECS_SW.fmu",
-                        implementation: None,
+                        id: None,
+                        description: None,
+                        name: Some(
+                            "ECS_SW",
+                        ),
                         Connectors: [
                             TConnectors {
                                 list: [
@@ -84,11 +95,17 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
+                        type: None,
+                        source: "resources/0002_ECS_SW.fmu",
+                        implementation: None,
+                        Annotations: None,
                     },
                     TComponent {
-                        type: None,
-                        source: "resources/0001_ECS_HW.fmu",
-                        implementation: None,
+                        id: None,
+                        description: None,
+                        name: Some(
+                            "ECS_HW",
+                        ),
                         Connectors: [
                             TConnectors {
                                 list: [
@@ -2871,11 +2888,17 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
+                        type: None,
+                        source: "resources/0001_ECS_HW.fmu",
+                        implementation: None,
+                        Annotations: None,
                     },
                     TComponent {
-                        type: None,
-                        source: "resources/0003_Consumer.fmu",
-                        implementation: None,
+                        id: None,
+                        description: None,
+                        name: Some(
+                            "Consumer",
+                        ),
                         Connectors: [
                             TConnectors {
                                 list: [
@@ -4280,11 +4303,17 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
+                        type: None,
+                        source: "resources/0003_Consumer.fmu",
+                        implementation: None,
+                        Annotations: None,
                     },
                     TComponent {
-                        type: None,
-                        source: "resources/0004_Atmos.fmu",
-                        implementation: None,
+                        id: None,
+                        description: None,
+                        name: Some(
+                            "Atmos",
+                        ),
                         Connectors: [
                             TConnectors {
                                 list: [
@@ -4391,11 +4420,17 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
+                        type: None,
+                        source: "resources/0004_Atmos.fmu",
+                        implementation: None,
+                        Annotations: None,
                     },
                     TComponent {
-                        type: None,
-                        source: "resources/0005_AdaptionUnit.fmu",
-                        implementation: None,
+                        id: None,
+                        description: None,
+                        name: Some(
+                            "AdaptionUnit",
+                        ),
                         Connectors: [
                             TConnectors {
                                 list: [
@@ -4482,10 +4517,14 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
+                        type: None,
+                        source: "resources/0005_AdaptionUnit.fmu",
+                        implementation: None,
+                        Annotations: None,
                     },
                 ],
-                SignalDictionaryReference: [],
-                System: [],
+                SignalDictionaryReferences: [],
+                Systems: [],
             },
         ),
         Connections: Some(

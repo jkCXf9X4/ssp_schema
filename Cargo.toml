@@ -1,2 +1,3 @@
 [workspace]
 members = ["ssp", "ssp_schema", "ssp_test"]
+resolver = "2"

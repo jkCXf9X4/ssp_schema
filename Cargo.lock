@@ -246,6 +246,7 @@ dependencies = [
 name = "ssp_test"
 version = "0.1.0"
 dependencies = [
+ "log",
  "petgraph",
  "ssp",
  "ssp_schema",

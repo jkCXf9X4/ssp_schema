@@ -6,5 +6,6 @@ edition = "2021"
 [dependencies]
 ssp = { path ="../ssp" }
 ssp_schema = { path ="../ssp_schema"}
+log = {version ="0.4"}
 
 petgraph = {version = "0.6.5"}

@@ -1,5 +1,5 @@
 use ssp_schema::ssp::ssd::SystemStructureDescription;
-use ssp_schema::Result;
+use ssp_schema::ResultBox;
 use tempfile::TempDir;
 
 use std::{
@@ -12,11 +12,10 @@ pub struct SSP {
     original_path: Option<String>,
     temp_path: TempDir,
     ssd: SystemStructureDescription,
-    component_paths: Vec<String>,
 }
 
 impl SSP {
-    pub fn new<R: Read + Seek>(reader: R) -> Result<Self> {
+    pub fn new<R: Read + Seek>(reader: R) -> ResultBox<Self> {
         log::trace!("Importing new SSP");
         let mut archive = zip::ZipArchive::new(reader).expect("Failed to open SSP reader");
         let temp_dir = tempfile::Builder::new().prefix("-rs").tempdir()?;
@@ -26,16 +25,22 @@ impl SSP {
         let ssd = SystemStructureDescription::new_from_file("ssd/SystemStructure.ssd")
             .expect("Failed to open SSD");
 
+        // let components = ssd.System.Elements.expect("Cant access elemets").Components;
+
+        // for component in components
+        // {
+
+        // }
+
         let ssp = SSP {
             original_path: None,
             temp_path: temp_dir,
             ssd: ssd,
-            component_paths: Vec::new(),
         };
         return Ok(ssp);
     }
 
-    pub fn new_from_file(path: &str) -> Result<Self> {
+    pub fn new_from_file(path: &str) -> ResultBox<Self> {
         let f = File::open(path).unwrap();
         let reader = BufReader::new(f);
         let mut ssp = SSP::new(reader).expect("Failed to open SSP file");

@@ -238,6 +238,7 @@ name = "ssp_schema"
 version = "0.1.0"
 dependencies = [
  "log",
+ "xml-rs",
  "yaserde",
  "yaserde_derive",
 ]

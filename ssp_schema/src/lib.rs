@@ -1,19 +1,18 @@
 pub mod ssp;
 
 use std::{
-    fs::File,
-    io::BufReader,
-    error,
+    error, fs::File, io::BufReader
 };
 
 use log;
 
-pub type Result<T> = std::result::Result<T, Box<dyn error::Error>>;
+pub type ResultBox<T> = std::result::Result<T, Box<dyn error::Error>>;
 
 use ssp::ssd::SystemStructureDescription;
 
+
 impl SystemStructureDescription {
-    pub fn new_from_file(path: &str) -> Result<Self> {
+    pub fn new_from_file(path: &str) -> ResultBox<Self> {
         log::trace!("Parsing new SSD from file");
         let f = File::open(path).expect("Failed to open SSD");
         let reader = BufReader::new(f);
@@ -23,3 +22,4 @@ impl SystemStructureDescription {
         return Ok(ssd);
     }
 }
+

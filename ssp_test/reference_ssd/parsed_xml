@@ -95,7 +95,11 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: None,
+                        type: Some(
+                            XFmuSharedlibrary(
+                                "application/x-fmu-sharedlibrary",
+                            ),
+                        ),
                         source: "resources/0002_ECS_SW.fmu",
                         implementation: None,
                         Annotations: None,
@@ -2888,7 +2892,11 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: None,
+                        type: Some(
+                            XFmuSharedlibrary(
+                                "application/x-fmu-sharedlibrary",
+                            ),
+                        ),
                         source: "resources/0001_ECS_HW.fmu",
                         implementation: None,
                         Annotations: None,
@@ -4303,7 +4311,11 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: None,
+                        type: Some(
+                            XFmuSharedlibrary(
+                                "application/x-fmu-sharedlibrary",
+                            ),
+                        ),
                         source: "resources/0003_Consumer.fmu",
                         implementation: None,
                         Annotations: None,
@@ -4420,7 +4432,11 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: None,
+                        type: Some(
+                            XFmuSharedlibrary(
+                                "application/x-fmu-sharedlibrary",
+                            ),
+                        ),
                         source: "resources/0004_Atmos.fmu",
                         implementation: None,
                         Annotations: None,
@@ -4517,7 +4533,11 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: None,
+                        type: Some(
+                            XFmuSharedlibrary(
+                                "application/x-fmu-sharedlibrary",
+                            ),
+                        ),
                         source: "resources/0005_AdaptionUnit.fmu",
                         implementation: None,
                         Annotations: None,
@@ -4914,7 +4934,9 @@ SystemStructureDescription {
             TAnnotations {
                 list: [
                     Annotation {
-                        type: None,
+                        type: Some(
+                            "org.openmodelica",
+                        ),
                         any: None,
                     },
                 ],

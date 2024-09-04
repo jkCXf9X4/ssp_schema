@@ -14,7 +14,7 @@ pub struct SystemStructureDescription {
     pub version: String,
     #[yaserde(attribute)]
     pub name: String,
-    
+
     // ABaseElement
     #[yaserde(attribute)]
     pub id: Option<String>,
@@ -53,7 +53,7 @@ pub struct SystemStructureDescription {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct TSystem {
-    //TElemet 
+    //TElemet
     // - ABaseElement
     #[yaserde(attribute)]
     pub id: Option<String>,
@@ -104,7 +104,7 @@ pub struct Elements {
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct TComponent {
-    //TElemet 
+    //TElemet
     // - ABaseElement
     #[yaserde(attribute)]
     pub id: Option<String>,
@@ -120,8 +120,8 @@ pub struct TComponent {
     #[yaserde(prefix = "ssd")]
     pub TParameterBindings: Vec<TParameterBindings>,
 
-    #[yaserde(attribute = "type")]
-    pub r#type: Option<String>,
+    #[yaserde(attribute, rename = "type")]
+    pub r#type: Option<ComponentKind>,
     #[yaserde(attribute)]
     pub source: String,
     #[yaserde(attribute)]
@@ -129,6 +129,13 @@ pub struct TComponent {
 
     #[yaserde(prefix = "ssc")]
     pub Annotations: Option<TAnnotations>,
+}
+
+#[derive(Clone, Debug, PartialEq, YaSerialize)]
+pub enum ComponentKind {
+    XFmuSharedlibrary(String),
+    XSspDefinition(String),
+    XSspPackage(String),
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -182,7 +189,6 @@ pub struct Connector {
     pub Annotations: Option<TAnnotations>,
 }
 
-
 ///////////////////////////////////////////////////////////////////////////
 // Connections
 ///////////////////////////////////////////////////////////////////////////
@@ -231,14 +237,12 @@ pub struct Connection {
 // Geometry
 ///////////////////////////////////////////////////////////////////////////
 
-
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize, YaSerialize)]
 #[yaserde(
     prefix = "ssd",
     namespace = "ssd: http://ssp-standard.org/SSP1/SystemStructureDescription"
 )]
 pub struct SystemGeometry {}
-
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize, YaSerialize)]
 #[yaserde(
@@ -282,7 +286,6 @@ pub struct TSignalDictionaryReference {
     #[yaserde(prefix = "ssc")]
     pub Annotations: Option<TAnnotations>,
 }
-
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize, YaSerialize)]
 #[yaserde(

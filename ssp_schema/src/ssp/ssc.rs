@@ -207,7 +207,7 @@ pub struct EnumerationMapEntry {
     namespace = "ssc: http://ssp-standard.org/SSP1/SystemStructureCommon"
 )]
 pub struct Annotation {
-    #[yaserde(attribute = "type")]
+    #[yaserde(attribute, rename = "type")]
     pub r#type: Option<String>,
     pub any: Option<String>,
 }

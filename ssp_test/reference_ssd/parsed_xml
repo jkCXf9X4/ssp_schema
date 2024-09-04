@@ -95,7 +95,7 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: Some(
+                        component_type: Some(
                             XFmuSharedlibrary(
                                 "application/x-fmu-sharedlibrary",
                             ),
@@ -2892,7 +2892,7 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: Some(
+                        component_type: Some(
                             XFmuSharedlibrary(
                                 "application/x-fmu-sharedlibrary",
                             ),
@@ -4311,7 +4311,7 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: Some(
+                        component_type: Some(
                             XFmuSharedlibrary(
                                 "application/x-fmu-sharedlibrary",
                             ),
@@ -4432,7 +4432,7 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: Some(
+                        component_type: Some(
                             XFmuSharedlibrary(
                                 "application/x-fmu-sharedlibrary",
                             ),
@@ -4533,7 +4533,7 @@ SystemStructureDescription {
                         ],
                         ElementGeometry: [],
                         TParameterBindings: [],
-                        type: Some(
+                        component_type: Some(
                             XFmuSharedlibrary(
                                 "application/x-fmu-sharedlibrary",
                             ),
@@ -4934,7 +4934,7 @@ SystemStructureDescription {
             TAnnotations {
                 list: [
                     Annotation {
-                        type: Some(
+                        annotation_type: Some(
                             "org.openmodelica",
                         ),
                         any: None,

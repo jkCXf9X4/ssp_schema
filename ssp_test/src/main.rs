@@ -10,25 +10,26 @@ use petgraph::dot::{Config, Dot};
 use petgraph::Graph;
 
 
-// use ssp::SSP;
-use ssp_schema::ssp::ssd::SystemStructureDescription;
+use ssp::ssp_import::SspImport;
+use ssp_schema::ssp_1::ssd::SystemStructureDescription;
 
 
 fn main() -> std::io::Result<()> {
-    log::trace!("Main!");
+    env_logger::init();
+    log::info!("Main!");
 
-    log::trace!("Parsing ssd");
-    let ssd = SystemStructureDescription::new_from_file("ssp_test/reference_ssd/SystemStructure.ssd").expect("Failed to parse ssd");
+    let ssp: SspImport = SspImport::from_path("ssp_test/reference_ssd/embrace.ssp").expect("Failed to parse ssd");
 
-    log::trace!("Storing internal repressentation");
+
+    log::info!("Storing internal representation");
     let mut output_file = File::create("ssp_test/reference_ssd/parsed_xml")?;
-    write!(output_file, "{:#?}", ssd)?;
+    write!(output_file, "{:#?}", ssp.ssd)?;
 
-    log::trace!("Creating graph");
+    log::info!("Creating graph");
     let mut graph = Graph::<&str, &str>::new();
     
-    log::trace!("Creating nodes");
-    let components  = ssd.System.Elements.unwrap().Components;
+    log::info!("Creating nodes");
+    let components  = ssp.ssd.System.Elements.unwrap().Components;
 
     let mut comp_id = HashMap::new();
     let mut id_comp = HashMap::new();
@@ -38,30 +39,29 @@ fn main() -> std::io::Result<()> {
         let name = component.name.as_deref().expect("No name attribute found");
         // .unwrap();
         let id = graph.add_node(name);
-
+        
+        log::debug!("Node: {:#?}", name);
         comp_id.insert(name, id);
         id_comp.insert(id, name);
 
-        log::trace!("{:#?}", name);
     }
 
-    log::trace!("Creating edges");
+    log::info!("Creating edges");
 
-    let conections = ssd.System.Connections.unwrap().list;
-    for connection in conections.iter()
+    let connections = ssp.ssd.System.Connections.unwrap().list;
+    for connection in connections.iter()
     {
-        let start_node = connection.startElement.as_deref().expect("No start elelent existing");
-        let end_node = connection.endElement.as_deref().expect("No end elelent existing");
+        let start_node = connection.startElement.as_deref().expect("No start element existing");
+        let end_node = connection.endElement.as_deref().expect("No end element existing");
         
-        log::trace!("{:#?}", start_node);
-        log::trace!("{:#?}", end_node);
+        log::debug!("Edge: {:#?} ->  {:#?}", start_node, end_node);
+        // log::info!("{:#?}", end_node);
 
         graph.add_edge(comp_id[start_node], comp_id[end_node], "");
 
     }
 
 
-    
     println!("{:?}", Dot::with_config(&graph, &[Config::EdgeNoLabel]));
 
     let tarjan_scc = petgraph::algo::tarjan_scc(&graph);

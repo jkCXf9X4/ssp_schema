@@ -7,5 +7,6 @@ edition = "2021"
 [dependencies]
 ssp_schema = { path ="../ssp_schema"}
 tempfile = {version ="3.12"}
-zip = {version ="2.2.0", default-features = false, features=["bzip2"] }
+zip = {version ="2.2.0"}
 log = {version ="0.4"}
+fmi = {version = "0.4.0", default-features = false, features=["fmi3", "fmi2"]}

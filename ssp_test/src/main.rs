@@ -5,6 +5,8 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufReader, Write};
 
+use fmi::fmi2::import::Fmi2Import;
+use fmi::traits::FmiImport;
 use petgraph::data::Build;
 use petgraph::dot::{Config, Dot};
 use petgraph::Graph;
@@ -19,7 +21,6 @@ fn main() -> std::io::Result<()> {
     log::info!("Main!");
 
     let ssp: SspImport = SspImport::from_path("ssp_test/reference_ssd/embrace.ssp").expect("Failed to parse ssd");
-
 
     log::info!("Storing internal representation");
     let mut output_file = File::create("ssp_test/reference_ssd/parsed_xml")?;

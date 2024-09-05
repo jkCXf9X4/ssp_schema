@@ -1,4 +1,7 @@
-# Wrokspaces
+This project is now canceled...
+
+
+# Workspaces
 
 ## SSP 
 
@@ -11,6 +14,8 @@ RUST_LOG=ssp,ssp_schema,ssp_test cargo run
 RUST_LOG=debug=ssp,ssp_schema,ssp_test cargo run
 
 '''
+
+WHen loading fmu, make sure that all files inside have read permission
 
 ## SSP-Schema
 

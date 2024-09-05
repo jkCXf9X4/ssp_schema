@@ -14,10 +14,17 @@ use std::{
     io::{BufReader, Read, Seek},
 };
 
-fn deserialize_ssd(temp_path: &Path) -> ResultBox<SystemStructureDescription> {
-    let ssd_path = temp_path.join("SystemStructure.ssd").into_os_string();
+fn deserialize_ssd(temp_path: &Path) -> Result<SystemStructureDescription, String> {
+    let ssd_path = temp_path.join("SystemStructure.ssd");
 
-    return SystemStructureDescription::from_path(&ssd_path.to_str().unwrap());
+    if ssd_path.exists() {
+        let ssd = SystemStructureDescription::from_path(&ssd_path.to_str().unwrap())
+            .expect("Failed to parse sdd");
+
+        return Ok(ssd);
+    } else {
+        Err(String::from("SSD file does not exist"))
+    }
 }
 
 fn get_resources(ssd: &SystemStructureDescription, temp_path: &Path) -> Vec<Resource> {
@@ -32,17 +39,14 @@ fn get_resources(ssd: &SystemStructureDescription, temp_path: &Path) -> Vec<Reso
             .as_ref()
             .expect("Could not extract component type");
 
-        let path = temp_path.join(component.source.clone()).into_os_string();
+        let comp_path = temp_path.join(component.source.clone());
+        let md = comp_path.metadata().expect("Metadata call failed");
 
-        // let cp = Command::new("cp")
-        //     .arg("-rp")
-        //     .arg(temp_path.to_str().unwrap())
-        //     .arg("test/")
-        //     .output().unwrap();
+        log::debug!("Resource found: {:#?}", comp_path);
+        log::debug!("Component path exists {}", comp_path.exists());
+        log::debug!("{:#?}", md.permissions());
 
-        log::debug!("Resource found: {:#?}", path);
-
-        let resource = import_resource(&c_type, path.to_str().unwrap());
+        let resource = import_resource(&c_type, comp_path.to_str().unwrap());
         resources.push(resource);
     }
     return resources;
@@ -52,9 +56,10 @@ fn import_resource(c_type: &ComponentKind, path: &str) -> Resource {
     match c_type {
         ComponentKind::XFmuSharedlibrary(_) => {
             log::debug!("Extracting fmu: {path:#?}");
+
             let import = fmi::import::from_path::<Fmi2Import>(path).expect("Failed to parse fmu");
             log::debug!("Extracting successful into {:#?}", import.archive_path());
-            
+
             Resource::Fmi2(import)
         }
         ComponentKind::XSspDefinition(_) => todo!(),
